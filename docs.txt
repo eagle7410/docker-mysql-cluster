@@ -1,0 +1,23 @@
+// command get pass
+docker logs mysql1 2>&1 | grep PASSWORD
+// Get cluster info
+docker run -it --net=dockermysqlcluster_mysql_net mysql/mysql-cluster:7.6 ndb_mgm
+// Run sql console tools
+docker exec -it mysql1 mysql -uroot -p
+
+docker exec -it management1 bash
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'
+IDENTIFIED BY PASSWORD '*33A6273F4F9E59DE26717792B42BA97A1C784108' WITH GRANT OPTION;
+
+//custom mysql server
+docker run
+		-d
+		--net=cluster
+		--name=management1
+		--ip=192.168.0.2
+		-v <path-to-your-file>/mysql-cluster.cnf:/etc/mysql-cluster.cnf
+	mysql/mysql-cluster
+	ndb_mgmd
+
+// Problem with foreign key No Cascade on update use RESTRICT

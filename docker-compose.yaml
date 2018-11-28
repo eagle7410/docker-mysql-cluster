@@ -1,0 +1,61 @@
+---
+  version: "3.5"
+  services:
+    management1:
+      image: "mysql/mysql-cluster:7.6"
+      container_name: "management1"
+      command: "ndb_mgmd"
+      volumes:
+        - ./cnf/mysql-cluster.cnf:/etc/mysql-cluster.cnf
+      networks:
+        mysql_net:
+          ipv4_address: "192.168.0.2"
+    management2:
+      image: "mysql/mysql-cluster:7.6"
+      container_name: "management2"
+      volumes:
+        - ./cnf/mysql-cluster.cnf:/etc/mysql-cluster.cnf
+      command: "ndb_mgmd"
+      networks:
+        mysql_net:
+          ipv4_address: "192.168.0.5"
+    ndb1:
+      image: "mysql/mysql-cluster:7.6"
+      container_name: "ndb1"
+      command: "ndbd"
+      networks:
+        mysql_net:
+          ipv4_address: "192.168.0.3"
+    ndb2:
+      image: "mysql/mysql-cluster:7.6"
+      container_name: "ndb2"
+      command: "ndbd"
+      networks:
+        mysql_net:
+          ipv4_address: "192.168.0.4"
+    mysql2:
+      image: "mysql/mysql-cluster:7.6"
+      container_name: "mysql2"
+      environment:
+        - MYSQL_RANDOM_ROOT_PASSWORD=true
+        - MYSQL_ROOT_HOST=%
+      command: "mysqld"
+      networks:
+        mysql_net:
+          ipv4_address: "192.168.0.9"
+    mysql1:
+      image: "mysql/mysql-cluster:7.6"
+      container_name: "mysql1"
+      environment:
+         - MYSQL_RANDOM_ROOT_PASSWORD=true
+         - MYSQL_ROOT_HOST=%
+      command: "mysqld"
+      networks:
+        mysql_net:
+          ipv4_address: "192.168.0.10"
+  networks:
+    mysql_net:
+      driver: "bridge"
+      ipam:
+        config:
+          - subnet: "192.168.0.0/16"
