@@ -1,5 +1,8 @@
-mysql1 iR10S(@ScePaPGYp$evoS=YGuRB
-mysql2 OkveBicAzegykbydem]AjLokoLOb
+mysql1 Q@lSeqUNEwuhaJaPOlWIsrabTYb
+mysql2 ucOtL3DciRGANaRoPoLeM@c7EB]
+
+docker exec -it mysql1 mysql -uroot -p
+docker exec -it mysql2 mysql -uroot -p
 
 pass q1
 

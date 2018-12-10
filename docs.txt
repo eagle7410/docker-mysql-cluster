@@ -21,3 +21,7 @@ docker run
 	ndb_mgmd
 
 // Problem with foreign key No Cascade on update use RESTRICT
+
+// Work if down ndbd -> 1,4 is ok
+// Work if down ndbd -> 2,3 is ok
+// WARNIG NOTE : NEED TIME FOR SYNCHRONIZE

@@ -14,10 +14,10 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 
 [ndbd default]
-NoOfReplicas=2
-DataMemory=80M
-IndexMemory=18M
 
+NoOfReplicas=2
+DataMemory=500M
+IndexMemory=18M
 
 [ndb_mgmd]
 NodeId=1
@@ -37,6 +37,16 @@ datadir=/var/lib/mysql
 [ndbd]
 NodeId=3
 hostname=192.168.0.4
+datadir=/var/lib/mysql
+
+[ndbd]
+NodeId=7
+hostname=192.168.0.11
+datadir=/var/lib/mysql
+
+[ndbd]
+NodeId=8
+hostname=192.168.0.12
 datadir=/var/lib/mysql
 
 [mysqld]

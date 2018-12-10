@@ -22,17 +22,31 @@
     ndb1:
       image: "mysql/mysql-cluster:7.6"
       container_name: "ndb1"
-      command: "ndbd"
+      command: "ndbd --initial"
       networks:
         mysql_net:
           ipv4_address: "192.168.0.3"
     ndb2:
       image: "mysql/mysql-cluster:7.6"
       container_name: "ndb2"
-      command: "ndbd"
+      command: "ndbd --initial"
       networks:
         mysql_net:
           ipv4_address: "192.168.0.4"
+    ndb3:
+      image: "mysql/mysql-cluster:7.6"
+      container_name: "ndb3"
+      command: "ndbd --initial"
+      networks:
+        mysql_net:
+          ipv4_address: "192.168.0.11"
+    ndb4:
+      image: "mysql/mysql-cluster:7.6"
+      container_name: "ndb4"
+      command: "ndbd --initial"
+      networks:
+        mysql_net:
+          ipv4_address: "192.168.0.12"
     mysql2:
       image: "mysql/mysql-cluster:7.6"
       container_name: "mysql2"
